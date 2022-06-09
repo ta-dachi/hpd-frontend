@@ -8,7 +8,7 @@ import './index.css'
 
 // import 'dotenv/config' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 
-console.log(process.env.VITE_REGION)
+console.log(process.env.VUE_APP_REGION)
 
 Amplify.configure({
   // Note: Attempt to configure  Auth manually
@@ -18,7 +18,7 @@ Amplify.configure({
       // identityPoolId: 'XX-XXXX-X:XXXXXXXX-XXXX-1234-abcd-1234567890ab',
       
       // REQUIRED - Amazon Cognito Region
-      region: process.env.VITE_REGION,
+      region: process.env.VUE_APP_REGION,
 
       // NOTE: We are not using Federated Authentication yet
       // OPTIONAL - Amazon Cognito Federated Identity Pool Region 
@@ -26,10 +26,10 @@ Amplify.configure({
       // identityPoolRegion: process.env.REGION,
 
       // OPTIONAL - Amazon Cognito User Pool ID
-      userPoolId: process.env.VITE_USER_POOL_ID,
+      userPoolId: process.env.VUE_APP_USER_POOL_ID,
 
       // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-      userPoolWebClientId: process.env.VITE_CLIENT_ID,
+      userPoolWebClientId: process.env.VUE_APP_CLIENT_ID,
 
       // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
       // mandatorySignIn: false,

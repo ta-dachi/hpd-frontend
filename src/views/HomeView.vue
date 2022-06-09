@@ -9,8 +9,8 @@ const user = useUserStore()
 
 onMounted(async () => {
   try {
-    const test = await API.get('hpdAPI', '/get_contacts', {})
-    console.log(test)
+    // const test = await API.get('hpdAPI', '/get_contacts', {})
+    // console.log(test)
     console.log('App.vue mounted')
     await Auth.currentAuthenticatedUser()
     user.isSignedIn = true

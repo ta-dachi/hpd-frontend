@@ -1,4 +1,44 @@
+<script setup lang="ts">
+  import { RouterLink, RouterView } from "vue-router"
+  import { Auth } from "@aws-amplify/auth"
+  import { onMounted, onUpdated } from "vue"
+  import { useUserStore } from "@/stores/user"
+  import router from "./router"
 
+  const user = useUserStore()
+
+onMounted(async () => {
+  try {
+    console.log('App.vue mounted')
+    await Auth.currentAuthenticatedUser()
+    user.isSignedIn = true
+  } catch(error) {
+    // user.isSignedIn = false
+    console.error("Error authenticating")
+  }
+})
+onUpdated(async () => {
+  try {
+    console.log('App.vue updated')
+    await Auth.currentAuthenticatedUser()
+    user.isSignedIn = true
+  } catch(error) {
+    // user.isSignedIn = false
+    console.error("Error authenticating")
+  }
+})
+/** Invalidate all tokens and sign off all devices */
+const signOut = async () => {
+  try {
+    await Auth.signOut({ global: true })
+    user.isSignedIn = false
+    router.push({path: '/login'})
+  } catch (error) {
+    console.error(error)
+  }
+} 
+
+</script>
 
 <template>
   <main id="app" class="flex flex-col w-screen h-screen">
@@ -18,9 +58,9 @@
           <a class="m-auto" href="/login">Login</a>
         </div>
 
-        <!-- <div class="flex pl-4 ml-auto" v-if="user.isSignedIn">
+        <div class="flex pl-4 ml-auto" v-if="user.isSignedIn">
           <a class="m-auto cursor-pointer" @click="async () => await signOut()">Sign Off</a>
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -53,24 +93,3 @@ a,
 } */
 </style>
 
-<script setup lang="ts">
-  import { RouterLink, RouterView } from "vue-router"
-  import { Auth } from "@aws-amplify/auth"
-  import { onMounted, onUpdated } from "vue"
-  import { useUserStore } from "@/stores/user"
-  import router from "./router"
-
-  const user = useUserStore()
-
-  /** Invalidate all tokens and sign off all devices */
-  async function logout() {
-    try {
-      // console.log(await Auth.signOut({ global: true }))
-      await Auth.signOut({ global: true })
-      user.isSignedIn = false
-      router.push({ path: "/login" })
-    } catch (error) {
-      console.error(error)
-    }
-  }
-</script>
