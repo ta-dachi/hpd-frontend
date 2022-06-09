@@ -1,7 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
   {
     path: '/',
     name: 'home',
@@ -11,10 +17,20 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'about',
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
+    // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    component: () => import('../views/AboutView.vue')
+  },
+  // Catch all
+  // See https://router.vuejs.org/guide/migration/#removed-star-or-catch-all-routes
+  {
+    path: '/:pathMatch(.*)',
+    name: '404',
+    component: {
+      template: '<div>Page Not Found</div>'
+    }
+  },
+  { path: '/:pathMatch(.*)', name: 'bad-not-found', component: {template: '<div>Page Not Found</div>'} },
 ]
 
 const router = createRouter({
