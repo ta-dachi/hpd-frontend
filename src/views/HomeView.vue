@@ -21,9 +21,10 @@ onMounted(async () => {
   }
 })
 
-const t1 = process.env.VUE_APP_REGION
-const t2 = process.env.VUE_APP_USER_POOL_ID
-const t3 = process.env.VUE_APP_CLIENT_ID
+
+// const t1 = process.env.VUE_APP_REGION
+// const t2 = process.env.VUE_APP_USER_POOL_ID
+// const t3 = process.env.VUE_APP_CLIENT_ID
 
 </script>
 
@@ -34,9 +35,10 @@ const t3 = process.env.VUE_APP_CLIENT_ID
 
     <div v-if="user.isSignedIn">Check your <a class="font-bold" href="/contacts">Contacts</a></div>
 
-    <div>{{t1}}</div>
+    <!-- Debug Amplify .env -->
+    <!-- <div>{{t1}}</div>
     <div>{{t2}}</div>
-    <div>{{t3}}</div>
+    <div>{{t3}}</div> -->
   </main>
 </template>
 
