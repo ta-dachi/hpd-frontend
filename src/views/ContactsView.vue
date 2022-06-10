@@ -10,13 +10,12 @@ import { Contact, ContactInfo } from "@/models/models"
 
 const user = useUserStore()
 // Make variable reactive to see UI changes when the var changes
-let contacts: Ref<ContactInfo[]> = ref([])
+let contacts: Ref<Contact[]> = ref([])
 let loading: Ref<boolean> = ref(true)
 onMounted(async () => {
-  console.log("test")
   try {
     
-    contacts.value = JSON.parse((await get_contacts()).message) as ContactInfo[]
+    contacts.value = JSON.parse((await get_contacts()).message) as Contact[]
     console.log(contacts.value)
     // await Auth.currentAuthenticatedUser()
     loading.value = false
@@ -30,8 +29,8 @@ onMounted(async () => {
   }
 })
 
-function goEditContact() {
-  router.push({ path: "/contact/edit" })
+function goEditContact(id: number) {
+  router.push({ path: "/contact/edit", query: {id: `${id}`} })
 }
 
 function goAddContact() {
@@ -54,22 +53,23 @@ function goAddContact() {
       </div>
 
       <!--  -->
-      <table class="table table-striped table-bordered" v-if="!loading">
+      <table class="table table-striped table-bordered mt-4" style="min-width: 400px;" v-if="!loading">
         <thead>
           <tr>
             <th class="p-1"></th>
-            <th class="p-1">Name (Role)</th>
-            <th class="p-1">Default Contact Number</th>
+            <th class="p-1 font-bold">Name (Role) (Email)</th>
+            <th class="p-1 font-bold">Default Contact Number</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(contact, index) in contacts" :key="index">
-            <td class="p-1"><button class="pl-4 pr-4 rounded" @click="goEditContact()">Edit</button></td>
+            <td class="p-1"><button class="pl-4 pr-4 rounded" @click="goEditContact(contact.id)">Edit</button></td>
             <td class="p-1">
               <div>{{ contact.first_name }} {{ contact.last_name }}</div>
               <div>{{ contact.contact_role}}</div>
+              <div>{{ contact.email}}</div>
             </td>
-            <td class="p-1">{{ contact.contact_number }}</td>
+            <td class="p-1 text-center">{{ contact.contact_number_default }}</td>
           </tr>
         </tbody>
       </table>
