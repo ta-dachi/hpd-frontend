@@ -27,13 +27,11 @@ onMounted(async () => {
   <main>
     <div v-if="!user.isSignedIn">Must be logged in to use. <a class="font-bold" href="/login">Login</a></div>
     <div v-if="user.isSignedIn">You are signed in.</div>
+
+    <div>Check your <a class="font-bold" href="/contacts">Contacts</a></div>
   </main>
 </template>
 
 <style scoped>
-  a:hover {
-    color: green;
-    font-weight: 700;
-    cursor: pointer;
-  }
+
 </style>

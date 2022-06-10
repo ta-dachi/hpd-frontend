@@ -72,14 +72,18 @@ Amplify.configure({
     endpoints: [
       {
         name: 'hpdAPI',
-        endpoint: 'https://i6i2li2i83.execute-api.us-west-2.amazonaws.com',
-        custom_header: async () => {
-          return { Authorization: (await Auth.currentSession() as any)["idToken"]["jwtToken"] }
+        endpoint: process.env.VUE_APP_ENDPOINT,
+        custom_header: async () => { 
+          // return { Authorization : 'token' } 
+          // Alternatively, with Cognito User Pools use this:
+          return { Authorization: `Bearer ${(await Auth.currentSession()).getAccessToken().getJwtToken()}` }
+          // return { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}` }
         }
       }
     ]
   }
 });
+
 
 
 const app = createApp(App)

@@ -50,6 +50,11 @@ const signOut = async () => {
         <div class="flex pl-4">
           <a class="m-auto" href="/">Home</a>
         </div>
+
+        <div class="flex pl-4" v-if="user.isSignedIn">
+          <a class="m-auto" href="/contacts">Contacts</a>
+        </div>
+
         <div class="flex pl-4">
           <a class="m-auto" href="/about">About</a>
         </div>

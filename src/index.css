@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a:hover {
+  color: rgb(116, 118, 116);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button {
+  background-color: #0c0b0b !important;
+  color: white !important;
+}
+
+button:hover {
+  background-color: #2c3229 !important;
+  color: rgb(235, 224, 224) !important;
+}
+
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.danger {
+  background-color: red !important
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
