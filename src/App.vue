@@ -42,7 +42,7 @@ const signOut = async () => {
 
 <template>
   <main id="app" class="flex flex-col w-screen h-screen">
-    <div class="flex flex-row pt-4 pb-4 grow-0">
+    <div class="flex flex-row pt-4 pb-4 grow-0 m-4">
       <div>
         <h2 class="text-3xl font-bold underline">hpd</h2>
       </div>
@@ -69,7 +69,7 @@ const signOut = async () => {
       </div>
     </div>
 
-    <div class="grow">
+    <div class="grow m-4">
       <RouterView></RouterView>
     </div>
   </main>

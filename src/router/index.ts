@@ -57,4 +57,10 @@ const router = createRouter({
   routes
 })
 
+// TODO Global Router Guards for certain endpoints
+// See https://router.vuejs.org/guide/advanced/navigation-guards.html#global-resolve-guards
+// router.beforeEach((to, from) => {
+  
+// })
+
 export default router
