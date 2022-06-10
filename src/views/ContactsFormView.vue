@@ -136,7 +136,11 @@ let contactInfoForm: Ref<{
 })
 
 const addContactInfo = async () => {
-  if (!id.value) {
+  
+  id.value = parseInt(router.currentRoute.value.query['id'] as string)
+  const tempId = parseInt(router.currentRoute.value.query['id'] as string)
+  console.log(tempId)
+  if (!tempId) {
     throw Error("id required to to add contact info")
   }
 
