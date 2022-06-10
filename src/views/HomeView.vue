@@ -21,6 +21,10 @@ onMounted(async () => {
   }
 })
 
+const t1 = process.env.VUE_APP_REGION
+const t2 = process.env.VUE_APP_USER_POOL_ID
+const t3 = process.env.VUE_APP_CLIENT_ID
+
 </script>
 
 <template>
@@ -28,7 +32,11 @@ onMounted(async () => {
     <div v-if="!user.isSignedIn">Must be logged in to use. <a class="font-bold" href="/login">Login</a></div>
     <div v-if="user.isSignedIn">You are signed in.</div>
 
-    <div>Check your <a class="font-bold" href="/contacts">Contacts</a></div>
+    <div v-if="user.isSignedIn">Check your <a class="font-bold" href="/contacts">Contacts</a></div>
+
+    <div>{{t1}}</div>
+    <div>{{t2}}</div>
+    <div>{{t3}}</div>
   </main>
 </template>
 
